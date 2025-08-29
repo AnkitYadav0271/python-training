@@ -12,7 +12,7 @@ class Employee(db.Model):
     name = db.Column(db.String(), nullable = False)
     email = db.Column(db.String(100), nullable = False)
     phone_no = db.Column(db.String(13),nullable = False)
-    address = db.Column(db.String(), nullable = False)
+    role = db.Column(db.String(), nullable = False)
 
     def __repr__(self):
         return f"{self.sno} - {self.name} "
@@ -27,8 +27,8 @@ def hello_world():
        name = request.form["name"]
        email = request.form["email"]
        phone = request.form["phone"]
-       address = request.form["address"]
-       employee = Employee( name = name, address = address,phone_no = phone, email = email,)
+       role = request.form["address"]
+       employee = Employee( name = name, role = role,phone_no = phone, email = email,)
        db.session.add(employee)
        db.session.commit()
     all_employee = Employee.query.all()
@@ -51,12 +51,12 @@ def update(sno):
         name = request.form["name"]
         email= request.form["email"]
         phone = request.form["phone"]
-        address = request.form["address"]
+        role = request.form["role"]
         employee = Employee.query.filter_by(sno = sno).first()
         employee.name = name
         employee.email = email
         employee.phone = phone
-        employee.address = address
+        employee.role = role
         db.session.add(employee)
         db.session.commit()
         return redirect("/")
