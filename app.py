@@ -27,7 +27,7 @@ def hello_world():
        name = request.form["name"]
        email = request.form["email"]
        phone = request.form["phone"]
-       role = request.form["address"]
+       role = request.form["role"]
        employee = Employee( name = name, role = role,phone_no = phone, email = email,)
        db.session.add(employee)
        db.session.commit()
